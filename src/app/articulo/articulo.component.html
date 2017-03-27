@@ -1,0 +1,27 @@
+<div class="col-lg-5">
+  <div class="panel panel-default container-fluid">
+      <div class="panel-heading row">
+        <div class="col-xs-11">
+          <h3><a href="{{ articulo.url }}">{{ articulo.titulo }}</a></h3>
+        </div>
+        <div class="col-xs-1">
+           <a href (click)="remove()"> <i class="glyphicon glyphicon-remove"></i></a>
+        </div>   
+      </div>
+      <div class="panel-body"> 
+        <div class="row">
+          <div class="col-md-6">
+              <button class="btn btn-primary btn-lg" type="button">
+                Votos <span class="badge">{{ articulo.votos }}</span>
+              </button>
+          </div>
+          <div class="col-md-3 vertical-align">
+              <a href (click)="voteUp()"> <i class="glyphicon glyphicon-thumbs-up fa-3x"></i></a>
+          </div>
+          <div class="col-md-3 vertical-align">
+              <a href (click)="voteDown()"> <i class="glyphicon glyphicon-thumbs-down fa-3x"></i></a>
+          </div>
+        </div>
+      </div>
+  </div>  
+</div>
