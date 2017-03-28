@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule,  ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { SimpleNotificationsModule } from 'angular2-notifications';
+import {NotificationsService, SimpleNotificationsModule} from 'angular2-notifications';
 
 import { AppComponent } from './app.component';
 import { EncabezadoComponent } from './encabezado/encabezado.component';
@@ -19,9 +19,11 @@ import { ArticuloComponent } from './articulo/articulo.component';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    SimpleNotificationsModule.forRoot()
+    SimpleNotificationsModule
   ],
-  providers: [],
+  providers: [
+    NotificationsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
