@@ -1,17 +1,26 @@
 <div class="jumbotron">
   <div class="container">
-    <form class="form-horizontal">
+    <simple-notifications [options]="options"></simple-notifications>
+    <form [formGroup]="formulario" (ngSubmit)="addArticle()" class="form-horizontal" >
       <h3>Añadir un artículo</h3>
 
-      <div class="form-group input-group col-sm-6">
+      <div class="form-group input-group col-sm-6" [class.has-error]="errorCampo(formulario.controls['titulo'])">
         <span class="input-group-addon"><i class="glyphicon glyphicon-comment"></i></span>
-        <input name="title" #newTitle class="form-control" placeholder="Título">
+        <input formControlName="titulo" class="form-control" placeholder="Título">
+
+        <div *ngIf="!formulario.valid">
+            <span class="glyphicon glyphicon-remove form-control-feedback" *ngIf="errorCampo(formulario.controls['titulo'])"></span>
+        </div>
       </div>
-      <div class="form-group input-group col-sm-6">
+      <div class="form-group input-group col-sm-6" [class.has-error]="errorCampo(formulario.controls['url'])">
         <span class="input-group-addon"><i class="glyphicon glyphicon-link"></i></span>
-        <input name="link" #newLink class="form-control" placeholder="Dirección url del artículo">
+        <input formControlName="url" class="form-control" placeholder="Dirección url del artículo">
+
+        <div *ngIf="!formulario.valid">
+            <span class="glyphicon glyphicon-remove form-control-feedback" *ngIf="errorCampo(formulario.controls['url'])"></span>
+        </div>
       </div>
-      <button (click)="addArticle(newTitle, newLink)" class="btn btn-lg btn-primary">
+      <button type="submit" class="btn btn-lg btn-primary">
         Añadir artículo
       </button>
     </form>
