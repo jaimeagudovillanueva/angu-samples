@@ -15,8 +15,11 @@ import { SearchComponent } from './spotify/components/search.component';
 import { ArtistComponent } from './spotify/components/artist.component';
 import { TrackComponent } from './spotify/components/track.component';
 import { AlbumComponent } from './spotify/components/album.component';
+import { InjectorsComponent } from './injectors/injectors.component';
 
 import {SPOTIFY_PROVIDERS} from './spotify/services/spotify.service';
+import {ApiService} from './injectors/services/ApiService';
+import {ViewPortService} from './injectors/services/ViewPortService';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import {SPOTIFY_PROVIDERS} from './spotify/services/spotify.service';
     SearchComponent,
     ArtistComponent,
     TrackComponent,
-    AlbumComponent
+    AlbumComponent,
+    InjectorsComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +45,16 @@ import {SPOTIFY_PROVIDERS} from './spotify/services/spotify.service';
   providers: [
     NotificationsService,
     SPOTIFY_PROVIDERS,
+    ApiService,
+    ViewPortService,
+    { provide: 'ApiServiceAlias', useExisting: ApiService },
+    {
+      provide: 'SizeService',
+      useFactory: (viewport: any) => {
+        return viewport.determineService();
+      },
+      deps: [ViewPortService]
+    }
   ],
   bootstrap: [AppComponent]
 })

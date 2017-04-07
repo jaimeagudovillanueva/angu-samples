@@ -15,7 +15,7 @@ export class EncabezadoComponent extends FormularioBaseComponent implements OnIn
 
   articulos: Articulo[];
 
-  constructor(protected notificationService: NotificationsService,) {
+  constructor(protected notificationService: NotificationsService) {
     super(notificationService)
 
      this.formulario = new FormGroup({
