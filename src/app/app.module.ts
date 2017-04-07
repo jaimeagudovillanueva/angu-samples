@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule,  ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { InjectorsModule } from './injectors/injectors.module';
 
 import { NotificationsService, SimpleNotificationsModule } from 'angular2-notifications';
 import { routing } from './app.routing';
@@ -15,11 +16,8 @@ import { SearchComponent } from './spotify/components/search.component';
 import { ArtistComponent } from './spotify/components/artist.component';
 import { TrackComponent } from './spotify/components/track.component';
 import { AlbumComponent } from './spotify/components/album.component';
-import { InjectorsComponent } from './injectors/injectors.component';
 
 import {SPOTIFY_PROVIDERS} from './spotify/services/spotify.service';
-import {ApiService} from './injectors/services/ApiService';
-import {ViewPortService} from './injectors/services/ViewPortService';
 
 @NgModule({
   declarations: [
@@ -31,8 +29,7 @@ import {ViewPortService} from './injectors/services/ViewPortService';
     SearchComponent,
     ArtistComponent,
     TrackComponent,
-    AlbumComponent,
-    InjectorsComponent
+    AlbumComponent
   ],
   imports: [
     BrowserModule,
@@ -40,21 +37,12 @@ import {ViewPortService} from './injectors/services/ViewPortService';
     ReactiveFormsModule,
     HttpModule,
     SimpleNotificationsModule,
+    InjectorsModule,
     routing
   ],
   providers: [
     NotificationsService,
-    SPOTIFY_PROVIDERS,
-    ApiService,
-    ViewPortService,
-    { provide: 'ApiServiceAlias', useExisting: ApiService },
-    {
-      provide: 'SizeService',
-      useFactory: (viewport: any) => {
-        return viewport.determineService();
-      },
-      deps: [ViewPortService]
-    }
+    SPOTIFY_PROVIDERS
   ],
   bootstrap: [AppComponent]
 })
